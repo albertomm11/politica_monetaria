@@ -4,7 +4,7 @@ library(writexl)
 library(ecb)
 
 paises_comparacion <- c("ES","FR","DE","IT","NL")
-fecha_corte  <- "2023-11-01"  #cambiar según último mes disponible, serie para chequear: ILM.M.ES.N.A050200.U2.EUR
+fecha_corte  <- "2024-01-01"  #cambiar según último mes disponible, serie para chequear: ILM.M.ES.N.A050200.U2.EUR
 
 #para comprobar las series, por eso está desactivado
 # LTRO_weekly <- ecb::get_data("ILM.W.U2.C.A050200.U2.EUR")
@@ -88,8 +88,8 @@ write_xlsx(list(ECB_Liquidity_overtime_bycountry=ECB_Liquidity_overtime_bycountr
 #3) Official rates ----
 
 official_df <- bind_rows(ecb::get_data("FM.D.U2.EUR.4F.KR.DFR.LEV"),
-                         ecb::get_data("FM.D.U2.EUR.4F.KR.MLFR.LEV"),
-                         ecb::get_data("FM.D.U2.EUR.4F.KR.MRR_RT.LEV")
+                         ecb::get_data("FM.D.U2.EUR.4F.KR.MRR_RT.LEV"),
+                         ecb::get_data("FM.D.U2.EUR.4F.KR.MLFR.LEV")
                          ) %>% 
                mutate(fecha = as.Date(obstime)) %>% 
                filter(fecha >= "2002-01-01") %>% 
